@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{%static '/css/login.css'%}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title">
+          Login
+        </div>
+        <form class="form" method = "POST">
+          {% csrf_token %}
+          <div class="input_field">
+            <input type="text" placeholder="Name" name="username" class="input">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="input_field">
+            <input type="password" placeholder="Password" name="password" class="input">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div>
+            <input class="btn" type="submit" value="Login">
+          </div>
+          {% for message in messages %}
+              <p id="messages" class="register_message">{{message}}</p>
+          {% endfor %}
+        </form>
+      </div>
+</body>
+</html>

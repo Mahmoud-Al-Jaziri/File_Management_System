@@ -1,0 +1,38 @@
+{% extends "DocumentFlow/main.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-white text-center mb-4">Manager Files</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>File Name</th>
+                    <th>Status</th>
+                    <th>Assigned To</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file in files %}
+                    <tr class="table-primary">
+                        <td>{{ file }}</td>
+                        <td>{{ file.status }}</td>
+                        <td>{{ file.assigned_to }}</td>
+                        <td>
+                            <a href="{% url 'file_detail' file.pk %}" class="btn btn-secondary btn-sm">View</a>
+                            <form method="post" action="{% url 'accept' file.pk %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% if request.user.groups.all.0.name == "Manager" %}
+        <a href="{% url 'file_list' %}" class="btn btn-primary">Back to File List</a>
+    {% endif %}
+</div>
+{% endblock %}

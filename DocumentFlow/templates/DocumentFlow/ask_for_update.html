@@ -1,0 +1,83 @@
+{% extends "DocumentFlow/main.html" %}
+
+{% block content %}
+<style>
+    .ask-update-container {
+        max-width: 600px;
+        margin: 0 auto;
+        margin-top: 1em;
+        padding: 20px;
+        background-color: #e3f6f5;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .ask-update-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+    .ask-update-container form {
+        display: flex;
+        flex-direction: column;
+    }
+    .ask-update-container form p {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    .ask-update-container label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+    .ask-update-container input[type="file"],
+    .ask-update-container input[type="text"],
+    .ask-update-container input[type="password"],
+    .ask-update-container input[type="email"],
+    .ask-update-container textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 100%;
+    }
+    .ask-update-container textarea[name="notes"] {
+        height: 100px; /* Adjust the height as needed */
+    }
+    .ask-update-container button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        align-self: center;
+    }
+    .ask-update-container button:hover {
+        background-color: #0056b3;
+    }
+    .ask-update-container .back-link {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        color: #007bff;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    .ask-update-container .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="ask-update-container">
+    <h1>Ask for Update</h1>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="notes" placeholder="Enter notes for update">{{ file.notes }}</textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'file_list' %}" class="btn btn-primary">Back to list</a>
+</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "DocumentFlow/main.html" %}
+
+{% block content %}
+<style>
+    .reject-file-container {
+        max-width: 600px;
+        margin: 0 auto;
+        margin-top: 1em;
+        padding: 20px;
+        background-color: #e3f6f5;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .reject-file-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+    .reject-file-container form {
+        display: flex;
+        flex-direction: column;
+    }
+    .reject-file-container form p {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    .reject-file-container label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+    .reject-file-container input[type="file"],
+    .reject-file-container input[type="text"],
+    .reject-file-container input[type="password"],
+    .reject-file-container input[type="email"],
+    .reject-file-container textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 100%;
+    }
+    .reject-file-container textarea[name="rejection_notes"] {
+        height: 100px; /* Adjust the height as needed */
+    }
+    .reject-file-container button {
+        padding: 10px 20px;
+        background-color: #dc3545;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        align-self: center;
+    }
+    .reject-file-container button:hover {
+        background-color: #c82333;
+    }
+    .reject-file-container .back-link {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        color: #007bff;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    .reject-file-container .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="reject-file-container">
+    <h1>Reject File</h1>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="rejection_notes" placeholder="Enter rejection reason">{{ file.rejection_notes }}</textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+    <a href="{% url 'file_list' %}" class="btn btn-primary">Back to list</a>
+</div>
+{% endblock %}

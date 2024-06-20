@@ -1,0 +1,25 @@
+{% extends "DocumentFlow/main.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-white text-center mb-4">File Details</h1>
+    <div class="card" style="background-color :#e3f6f5;">
+        <div class="card-body">
+            <p><a href="{{ file_url }}" target="_blank" class="btn btn-primary">Open File</a></p>
+            <p><strong>File Type:</strong> {{ file.file_type }}</p>
+            <p><strong>Description:</strong> {{ file.description }}</p>
+            <p><strong>Uploaded By:</strong> {{ file.uploaded_by }}</p>
+            <p><strong>Status:</strong> {{ file.status }}</p>
+            <p><strong>Auditor Notes:</strong> {{ file.notes }}</p>
+            <p><strong>Rejection Notes:</strong> {{ file.rejection_notes }}</p>
+            <p><strong>Assigned To:</strong> {{ file.assigned_to }}</p>
+            <p><strong>Date Uploaded:</strong> {{ file.date_uploaded }}</p>
+            <a href="{% url 'file_list' %}" class="btn btn-secondary">Back to list</a>
+            {% if request.user.groups.all.0.name == "Manager" %}
+            <a href="{% url 'manager_file_list' %}" class="btn btn-secondary">Back to Review Queue list</a>
+            {% endif %}
+            <a href="{% url 'accepted_file_list' %}" class="btn btn-secondary">Back to Accepted Files list</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

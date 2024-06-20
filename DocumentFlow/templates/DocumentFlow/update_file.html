@@ -1,0 +1,83 @@
+{% extends "DocumentFlow/main.html" %}
+
+{% block content %}
+<style>
+    .update-container {
+        max-width: 600px;
+        margin: 0 auto;
+        margin-top: 1em;
+        padding: 20px;
+        background-color: #e3f6f5;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .update-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+    .update-container form {
+        display: flex;
+        flex-direction: column;
+    }
+    .update-container form p {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    .update-container label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+    .update-container input[type="file"],
+    .update-container input[type="text"],
+    .update-container input[type="password"],
+    .update-container input[type="email"],
+    .update-container textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 100%;
+    }
+    .update-container textarea[name="description"] {
+        height: 100px; /* Adjust the height as needed */
+    }
+    .update-container button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        align-self: center;
+    }
+    .update-container button:hover {
+        background-color: #0056b3;
+    }
+    .update-container .back-link {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        color: #007bff;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    .update-container .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="update-container">
+    <h1>Update File</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% url 'file_list' %}" class="btn btn-primary">Back to list</a>
+</div>
+{% endblock %}

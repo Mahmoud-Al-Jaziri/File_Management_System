@@ -1,0 +1,45 @@
+<!-- templates/includes/navbar.html -->
+<nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color:#bae8e8">
+  <div class="container">
+    <a class="navbar-brand" href="">File System</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url "file_list" %}">FileList</a>
+        </li>
+        <li class="nav-item">
+          {% if request.user.groups.all.0.name == "Assistant" or request.user.groups.all.0.name == "Auditor" %}
+          <a class="nav-link" href="{% url 'upload_file' %}">Upload New File</a>
+          {% endif %}
+        </li>
+        {% if request.user.groups.all.0.name != "Assistant" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "request_file" %}">Request A File</a>
+          </li>
+          {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "file_request_list" %}">Requested Files</a>
+        </li>
+        <li class="nav-item">
+          {% if request.user.groups.all.0.name == "Manager" %}
+          <a class="nav-link" href="{% url 'manager_file_list' %}">Review Queue</a>
+          {% endif %}
+        </li>
+        
+          <li class="nav-item">
+            <a class="nav-link" href="{% url "accepted_file_list" %}">Accepted Files</a>
+          </li>
+      </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <span class="hello-msg">Hello, {{request.user}}</span>
+            <a class="nav-link btn btn-info text-black ml-auto" href="{% url 'logout' %}">Logout</a>
+          </li>
+        </ul>
+    </div>
+  </div>
+  
+</nav>

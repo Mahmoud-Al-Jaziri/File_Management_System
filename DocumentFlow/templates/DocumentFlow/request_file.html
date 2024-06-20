@@ -1,0 +1,80 @@
+{% extends "DocumentFlow/main.html" %}
+
+{% block content %}
+<style>
+    .request-file-container {
+        max-width: 600px;
+        margin: 0 auto;
+        margin-top: 1em;
+        padding: 20px;
+        background-color: #e3f6f5;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .request-file-container h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-family: 'Arial', sans-serif;
+        color: #333;
+    }
+    .request-file-container form {
+        display: flex;
+        flex-direction: column;
+    }
+    .request-file-container form p {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+    }
+    .request-file-container label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: #555;
+    }
+    .request-file-container input[type="file"],
+    .request-file-container input[type="text"],
+    .request-file-container input[type="password"],
+    .request-file-container input[type="email"],
+    .request-file-container textarea {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        width: 100%;
+    }
+    .request-file-container button {
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        align-self: center;
+    }
+    .request-file-container button:hover {
+        background-color: #218838;
+    }
+    .request-file-container .back-link {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        color: #007bff;
+        text-decoration: none;
+        font-size: 16px;
+    }
+    .request-file-container .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="request-file-container">
+    <h1>Request a File</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Request</button>
+    </form>
+    <a href="{% url 'file_request_list' %}" class="btn btn-primary">View Requests</a>
+</div>
+{% endblock %}
