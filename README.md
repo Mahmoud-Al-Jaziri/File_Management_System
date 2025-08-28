@@ -8,7 +8,7 @@
 
 A comprehensive Document Management System built with Django that streamlines file submission, validation, and approval processes with role-based workflows and complete audit logging.
 
-**Live Demo:** (DocumentrManagementPlatform.pythonanywhere.com)
+**Live Demo:** ([DocumentrManagementPlatform.pythonanywhere.com](https://documentrmanagementplatform.pythonanywhere.com/login/?next=/))
 
 ## ✨ Features
 
@@ -49,15 +49,14 @@ A comprehensive Document Management System built with Django that streamlines fi
 
 ## 🚀 Live Deployment
 
-The application is currently hosted and available at: (DocumentrManagementPlatform.pythonanywhere.com)
+The application is currently hosted and available at:
+([DocumentrManagementPlatform.pythonanywhere.com](https://documentrmanagementplatform.pythonanywhere.com/login/?next=/))
 
 ### Demo Credentials:
 - **Manager Account:** manager / nop#$@
 - **Supervisor Account:** Supervisor / nop#$@##
 - **Reviewer Account:** Auditor / nop#$@@@
 - **Assistant Account:** Assistant / nop#$@!!
-
-*Note: Demo data resets every 24 hours.*
 
 ## 🛠️ Installation
 
